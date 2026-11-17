@@ -1,5 +1,5 @@
 (function(){
-  var currentSlug = 'nabil-izza';
+  var currentSlug = 'nabil-izza-2';
   window.__WEDDING_SLUG = currentSlug;
 
   function normalizeMusic(src) {

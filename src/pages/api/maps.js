@@ -34,7 +34,7 @@ function jsonResponse(data, status = 200) {
 async function ensureSiteConfigTable(d1) {
   await d1
     .prepare(
-      'CREATE TABLE IF NOT EXISTS site_config (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP)'
+      'CREATE TABLE IF NOT EXISTS v2_site_config (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP)'
     )
     .run();
 }

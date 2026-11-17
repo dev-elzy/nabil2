@@ -1,7 +1,7 @@
 import { sqliteTable, text, integer, index } from 'drizzle-orm/sqlite-core';
 import { sql } from 'drizzle-orm';
 
-export const guests = sqliteTable('guests', {
+export const guests = sqliteTable('v2_guests', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
   category: text('category').default('Umum'),
@@ -9,11 +9,11 @@ export const guests = sqliteTable('guests', {
   sent: integer('sent').default(0),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`)
 }, (table) => [
-  index('idx_guests_name').on(table.name),
-  index('idx_guests_created').on(table.createdAt)
+  index('idx_v2_guests_name').on(table.name),
+  index('idx_v2_guests_created').on(table.createdAt)
 ]);
 
-export const rsvps = sqliteTable('rsvps', {
+export const rsvps = sqliteTable('v2_rsvps', {
   id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
   name: text('name').notNull(),
   city: text('city'),
@@ -24,11 +24,11 @@ export const rsvps = sqliteTable('rsvps', {
   isVisible: integer('is_visible').default(1),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`)
 }, (table) => [
-  index('idx_rsvps_created').on(table.createdAt),
-  index('idx_rsvps_visible_created').on(table.isVisible, table.createdAt)
+  index('idx_v2_rsvps_created').on(table.createdAt),
+  index('idx_v2_rsvps_visible_created').on(table.isVisible, table.createdAt)
 ]);
 
-export const siteConfig = sqliteTable('site_config', {
+export const siteConfig = sqliteTable('v2_site_config', {
   key: text('key').primaryKey(),
   value: text('value').notNull(),
   updatedAt: text('updated_at').default(sql`CURRENT_TIMESTAMP`)
