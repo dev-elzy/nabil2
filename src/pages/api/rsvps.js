@@ -2,33 +2,29 @@ export const prerender = false;
 
 import { getDb, schema } from '../../db/index.js';
 import { desc, eq, or, isNull } from 'drizzle-orm';
+import { jsonResponse as apiJson, verifyPortalSession } from '../../lib/api-utils.js';
 
 function jsonResponse(data, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Cache-Control': 'no-store, no-cache, must-revalidate'
-    }
-  });
+  return apiJson(data, status, null, 'GET, POST, PATCH, DELETE, OPTIONS');
 }
 
-export async function OPTIONS() {
-  return jsonResponse({ ok: true });
+export async function OPTIONS({ request }) {
+  return apiJson({ ok: true }, 200, request, 'GET, POST, PATCH, DELETE, OPTIONS');
 }
 
 export async function GET(context) {
   try {
-    const d1 = context.locals?.runtime?.env?.DB;
+    const env = context.locals?.runtime?.env;
+    const d1 = env?.DB;
     if (!d1) {
       return jsonResponse({ error: 'Database D1 tidak ditemukan pada runtime Cloudflare' }, 500);
     }
 
     const url = new URL(context.request.url);
     const isAdmin = url.searchParams.get('admin') === '1' || url.searchParams.get('all') === '1';
+    if (isAdmin && !(await verifyPortalSession(context.request, env))) {
+      return jsonResponse({ error: 'Akses ditolak. Silakan login di portal.' }, 401);
+    }
 
     const db = getDb(d1);
     let query = db
@@ -67,8 +63,11 @@ export async function POST(context) {
 
     const body = await context.request.json().catch(() => ({}));
 
-    // Support toggle action via POST as fallback
+    // Support toggle action via POST as fallback (khusus admin portal)
     if (body.action === 'toggle' && body.id) {
+      if (!(await verifyPortalSession(context.request, context.locals?.runtime?.env))) {
+        return jsonResponse({ error: 'Akses ditolak. Silakan login di portal.' }, 401);
+      }
       const db = getDb(d1);
       const isVisible = body.is_visible ? 1 : 0;
       await db
@@ -125,7 +124,11 @@ export async function POST(context) {
 
 export async function PATCH(context) {
   try {
-    const d1 = context.locals?.runtime?.env?.DB;
+    const env = context.locals?.runtime?.env;
+    if (!(await verifyPortalSession(context.request, env))) {
+      return jsonResponse({ error: 'Akses ditolak. Silakan login di portal.' }, 401);
+    }
+    const d1 = env?.DB;
     if (!d1) {
       return jsonResponse({ error: 'Database D1 tidak ditemukan pada runtime Cloudflare' }, 500);
     }
@@ -152,7 +155,11 @@ export async function PATCH(context) {
 
 export async function DELETE(context) {
   try {
-    const d1 = context.locals?.runtime?.env?.DB;
+    const env = context.locals?.runtime?.env;
+    if (!(await verifyPortalSession(context.request, env))) {
+      return jsonResponse({ error: 'Akses ditolak. Silakan login di portal.' }, 401);
+    }
+    const d1 = env?.DB;
     if (!d1) {
       return jsonResponse({ error: 'Database D1 tidak ditemukan pada runtime Cloudflare' }, 500);
     }

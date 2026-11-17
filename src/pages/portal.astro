@@ -3095,20 +3095,38 @@
     window.switchPortalTab = switchPortalTab;
 
     // 1. OTENTIKASI PENGANTIN
+    function showPortalAuthenticated() {
+      document.getElementById('loginModal').classList.add('hidden');
+      document.getElementById('portalContent').classList.remove('hidden');
+      renderGuestTable();
+      updateMessagePreview();
+      fetchGuestsFromD1();
+      fetchRsvpsFromD1();
+      loadMapsConfigFromD1();
+    }
+
     function checkAuth() {
       var isAuth = localStorage.getItem(PORTAL_AUTH_KEY) === '1';
-      if (isAuth) {
-        document.getElementById('loginModal').classList.add('hidden');
-        document.getElementById('portalContent').classList.remove('hidden');
-        renderGuestTable();
-        updateMessagePreview();
-        fetchGuestsFromD1();
-        fetchRsvpsFromD1();
-        loadMapsConfigFromD1();
-      } else {
+      if (!isAuth) {
         document.getElementById('loginModal').classList.remove('hidden');
         document.getElementById('portalContent').classList.add('hidden');
+        return;
       }
+      fetch('/api/portal-auth', { cache: 'no-store' })
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(data) {
+          if (data && data.authenticated) {
+            showPortalAuthenticated();
+          } else {
+            localStorage.removeItem(PORTAL_AUTH_KEY);
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.getElementById('portalContent').classList.add('hidden');
+          }
+        })
+        .catch(function() {
+          document.getElementById('loginModal').classList.remove('hidden');
+          document.getElementById('portalContent').classList.add('hidden');
+        });
     }
 
     function togglePasswordVisibility() {
@@ -3131,18 +3149,29 @@
       e.preventDefault();
       var pass = document.getElementById('loginPass').value.trim();
       var err = document.getElementById('loginError');
-      if (pass === 'Izza-Nabil2027') {
-        localStorage.setItem(PORTAL_AUTH_KEY, '1');
-        err.style.display = 'none';
-        checkAuth();
-        showToast('Selamat datang di Portal Pengantin!');
-      } else {
-        err.style.display = 'block';
-        var box = document.querySelector('.login-box');
-        box.style.animation = 'none';
-        box.offsetHeight;
-        box.style.animation = 'modalFadeIn 0.3s ease';
-      }
+      fetch('/api/portal-auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pass })
+      })
+        .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+        .then(function(result) {
+          if (result.ok && result.data && result.data.success) {
+            localStorage.setItem(PORTAL_AUTH_KEY, '1');
+            err.style.display = 'none';
+            showPortalAuthenticated();
+            showToast('Selamat datang di Portal Pengantin!');
+          } else {
+            err.style.display = 'block';
+            var box = document.querySelector('.login-box');
+            box.style.animation = 'none';
+            box.offsetHeight;
+            box.style.animation = 'modalFadeIn 0.3s ease';
+          }
+        })
+        .catch(function() {
+          err.style.display = 'block';
+        });
       return false;
     }
 
@@ -3151,7 +3180,9 @@
         .then(function(confirmed) {
           if (confirmed) {
             localStorage.removeItem(PORTAL_AUTH_KEY);
-            location.reload();
+            fetch('/api/portal-auth', { method: 'DELETE' }).finally(function() {
+              location.reload();
+            });
           }
         });
     }
@@ -4514,7 +4545,7 @@
             throw new Error((result.data && result.data.error) || 'Gagal menyimpan pengaturan maps.');
           }
           try {
-            localStorage.setItem('wedding_config_nabil-izza', JSON.stringify(result.data.data));
+            localStorage.setItem('wedding_config_nabil-izza-2', JSON.stringify(result.data.data));
           } catch(e){}
           var savedEl = document.getElementById('mapsLastSaved');
           if (savedEl) savedEl.textContent = 'Tersimpan barusan';
@@ -4539,7 +4570,7 @@
               if (!json || !json.success) {
                 throw new Error((json && json.error) || 'Gagal mereset pengaturan maps.');
               }
-              try { localStorage.removeItem('wedding_config_nabil-izza'); } catch(e){}
+              try { localStorage.removeItem('wedding_config_nabil-izza-2'); } catch(e){}
               applyMapStateToEditor('akad', DEFAULT_MAPS_CONFIG.akad, 'Dikembalikan ke peta bawaan (Default): ' + DEFAULT_MAPS_CONFIG.akad.mapQuery);
               applyMapStateToEditor('resepsi', DEFAULT_MAPS_CONFIG.resepsi, 'Dikembalikan ke peta bawaan (Default): ' + DEFAULT_MAPS_CONFIG.resepsi.mapQuery);
               var savedEl = document.getElementById('mapsLastSaved');

@@ -2,6 +2,7 @@ export const prerender = false;
 
 import { getDb, schema } from '../../db/index.js';
 import { eq } from 'drizzle-orm';
+import { jsonResponse as apiJson, verifyPortalSession } from '../../lib/api-utils.js';
 
 const CONFIG_KEY = 'maps_config';
 
@@ -19,16 +20,7 @@ const ALLOWED_MAP_HOSTS = new Set([
 const SHORTLINK_HOSTS = new Set(['maps.app.goo.gl', 'goo.gl', 'g.co']);
 
 function jsonResponse(data, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Cache-Control': 'no-store, no-cache, must-revalidate'
-    }
-  });
+  return apiJson(data, status, null, 'GET, POST, DELETE, OPTIONS');
 }
 
 async function ensureSiteConfigTable(d1) {
@@ -420,6 +412,11 @@ export async function GET(context) {
 
 export async function POST(context) {
   try {
+    const env = context.locals?.runtime?.env;
+    if (!(await verifyPortalSession(context.request, env))) {
+      return jsonResponse({ success: false, error: 'Akses ditolak. Silakan login di portal.' }, 401);
+    }
+
     const body = await context.request.json().catch(() => ({}));
 
     if (body.action === 'resolve') {
@@ -474,7 +471,12 @@ export async function POST(context) {
 
 export async function DELETE(context) {
   try {
-    const d1 = context.locals?.runtime?.env?.DB;
+    const env = context.locals?.runtime?.env;
+    if (!(await verifyPortalSession(context.request, env))) {
+      return jsonResponse({ success: false, error: 'Akses ditolak. Silakan login di portal.' }, 401);
+    }
+
+    const d1 = env?.DB;
     if (!d1) {
       return jsonResponse({ error: 'Database D1 tidak ditemukan pada runtime Cloudflare' }, 500);
     }

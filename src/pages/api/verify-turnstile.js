@@ -1,16 +1,9 @@
 export const prerender = false;
 
+import { jsonResponse as apiJson } from '../../lib/api-utils.js';
+
 function jsonResponse(data, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Cache-Control': 'no-store, no-cache, must-revalidate'
-    }
-  });
+  return apiJson(data, status, null, 'POST, OPTIONS');
 }
 
 export async function OPTIONS() {
