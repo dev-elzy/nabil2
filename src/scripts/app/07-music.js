@@ -57,7 +57,7 @@ var Music=(function(){
   }
 
   var defaultPlaylist = [
-    '/music/Maher Zain - Sepanjang Hidup.mp3'
+    '/music/Maher-Zain - BarakaAllahuLakuma.mp3'
   ];
   var currentTrackIndex = 0;
   var useSynth = false;
@@ -71,7 +71,7 @@ var Music=(function(){
     var filtered = list.filter(function(item) {
       if (!item) return false;
       var str = String(item);
-      return str.indexOf('Royal Burgundy') === -1 && str.indexOf('The_Grace_of_Union') === -1;
+      return str.indexOf('Royal Burgundy') === -1 && str.indexOf('The_Grace_of_Union') === -1 && str.indexOf('Sepanjang Hidup') === -1;
     });
     return filtered.length ? filtered : defaultPlaylist;
   }

@@ -24,6 +24,11 @@
   }
   window.__deepMergeConfig = deepMerge;
 
+  var defaultMapSnapshot = {
+    akad: CONFIG.akad ? JSON.parse(JSON.stringify(CONFIG.akad)) : null,
+    resepsi: CONFIG.resepsi ? JSON.parse(JSON.stringify(CONFIG.resepsi)) : null
+  };
+
   // Coba ambil dari localStorage untuk loading instan
   try {
     var cached = localStorage.getItem('wedding_config_' + currentSlug);
@@ -31,16 +36,36 @@
       var parsed = JSON.parse(cached);
       if(parsed && parsed.playlist && Array.isArray(parsed.playlist)) {
         parsed.playlist = parsed.playlist.filter(function(item) {
-          return item && item.indexOf('Royal Burgundy') === -1 && item.indexOf('The_Grace_of_Union') === -1;
+          return item && item.indexOf('Royal Burgundy') === -1 && item.indexOf('The_Grace_of_Union') === -1 && item.indexOf('Sepanjang Hidup') === -1;
         });
         if(!parsed.playlist.length) delete parsed.playlist;
       }
-      if(parsed && parsed.musicSrc && (parsed.musicSrc.indexOf('Royal Burgundy') !== -1 || parsed.musicSrc.indexOf('The_Grace_of_Union') !== -1)) {
+      if(parsed && parsed.musicSrc && (parsed.musicSrc.indexOf('Royal Burgundy') !== -1 || parsed.musicSrc.indexOf('The_Grace_of_Union') !== -1 || parsed.musicSrc.indexOf('Sepanjang Hidup') !== -1)) {
         delete parsed.musicSrc;
       }
       deepMerge(CONFIG, parsed);
       if(CONFIG.musicSrc) CONFIG.musicSrc = normalizeMusic(CONFIG.musicSrc);
     }
+  } catch(e){}
+
+  // Load konfigurasi maps terbaru dari Cloudflare D1 (/api/maps)
+  try {
+    fetch('/api/maps', { cache: 'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(res){
+        if(!res || !res.success) return;
+        if(res.data && (res.data.akad || res.data.resepsi)) {
+          deepMerge(CONFIG, res.data);
+          try { localStorage.setItem('wedding_config_' + currentSlug, JSON.stringify(res.data)); } catch(e){}
+          if(window.__rebindConfig) window.__rebindConfig();
+        } else if(res.data === null) {
+          try { localStorage.removeItem('wedding_config_' + currentSlug); } catch(e){}
+          if(defaultMapSnapshot.akad) CONFIG.akad = JSON.parse(JSON.stringify(defaultMapSnapshot.akad));
+          if(defaultMapSnapshot.resepsi) CONFIG.resepsi = JSON.parse(JSON.stringify(defaultMapSnapshot.resepsi));
+          if(window.__rebindConfig) window.__rebindConfig();
+        }
+      })
+      .catch(function(){});
   } catch(e){}
 
   // Load konfigurasi dari Supabase wedding_config jika tersedia

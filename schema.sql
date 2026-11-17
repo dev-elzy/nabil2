@@ -21,3 +21,9 @@ CREATE TABLE IF NOT EXISTS rsvps (
 -- Indexing untuk query cepat
 CREATE INDEX IF NOT EXISTS idx_guests_name ON guests(name);
 CREATE INDEX IF NOT EXISTS idx_rsvps_created ON rsvps(created_at DESC);
+
+CREATE TABLE IF NOT EXISTS site_config (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

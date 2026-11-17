@@ -10,7 +10,6 @@ import Ayat from '../components/sections/Ayat.astro';
 import Mempelai from '../components/sections/Mempelai.astro';
 import Acara from '../components/sections/Acara.astro';
 import Lokasi from '../components/sections/Lokasi.astro';
-import Hadiah from '../components/sections/Hadiah.astro';
 import Rsvp from '../components/sections/Rsvp.astro';
 import Ucapan from '../components/sections/Ucapan.astro';
 import Penutup from '../components/sections/Penutup.astro';
@@ -106,7 +105,7 @@ if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){do
 <!-- Mempelai dibuka dengan salam pembuka (dulu section terpisah) -->
 <Mempelai />
 
-<!-- Ritme warna: Acara (terang) > Lokasi (gelap) > RSVP (terang) > Ucapan (gelap) > Hadiah (terang) > Penutup (gelap) -->
+<!-- Ritme warna: Acara (terang) > Lokasi (gelap) > RSVP (terang) > Ucapan (gelap) > Penutup (gelap) -->
 <Acara />
 
 <Lokasi />
@@ -114,8 +113,6 @@ if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){do
 <Rsvp />
 
 <Ucapan />
-
-<Hadiah />
 
 <Penutup />
 

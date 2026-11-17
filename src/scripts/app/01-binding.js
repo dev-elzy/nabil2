@@ -134,11 +134,11 @@ function applyConfigToDom(cfg) {
 
   if (cfg.akad && cfg.akad.mapEmbed) {
     var aIframe = $('#mapAkadIframe');
-    if (aIframe) aIframe.src = cfg.akad.mapEmbed;
+    if (aIframe && aIframe.src !== cfg.akad.mapEmbed) aIframe.src = cfg.akad.mapEmbed;
   }
   if (cfg.resepsi && cfg.resepsi.mapEmbed) {
     var rIframe = $('#mapResepsiIframe');
-    if (rIframe) rIframe.src = cfg.resepsi.mapEmbed;
+    if (rIframe && rIframe.src !== cfg.resepsi.mapEmbed) rIframe.src = cfg.resepsi.mapEmbed;
   }
 
   // Visibility Toggles

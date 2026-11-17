@@ -374,7 +374,7 @@
        ========================================================================== */
     .portal-nav-tabs {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 10px;
       margin-bottom: 24px;
       background: rgba(22, 3, 9, 0.85);
@@ -1004,6 +1004,9 @@
         border-radius: 14px !important;
         width: 100% !important;
         box-sizing: border-box !important;
+      }
+      .portal-nav-tab:nth-child(5) {
+        grid-column: 1 / -1 !important;
       }
       .portal-nav-tab {
         padding: 8px 4px !important;
@@ -2028,6 +2031,298 @@
       box-shadow: 0 6px 20px rgba(225, 29, 72, 0.55) !important;
       transform: translateY(-1px);
     }
+
+    /* ==========================================================================
+       TAB 5: EDIT MAPS & MOBILE GUIDE STYLES
+       ========================================================================== */
+    .maps-guide-card {
+      background: linear-gradient(160deg, rgba(201, 165, 107, 0.12) 0%, rgba(28, 4, 11, 0.88) 100%);
+      border: 1.5px solid rgba(201, 165, 107, 0.38);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+    .maps-guide-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .maps-guide-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--gold-soft);
+    }
+    .maps-guide-body {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(201, 165, 107, 0.3);
+    }
+    .maps-guide-body.collapsed {
+      display: none;
+    }
+    .maps-guide-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .maps-step-item {
+      background: rgba(18, 3, 8, 0.72);
+      border: 1px solid rgba(201, 165, 107, 0.24);
+      border-radius: 14px;
+      padding: 13px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .maps-step-num {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .maps-step-num span {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color: var(--wine-950);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .maps-step-desc {
+      font-size: 0.82rem;
+      color: rgba(250, 243, 232, 0.9);
+      line-height: 1.5;
+    }
+    .maps-step-desc strong {
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+    .maps-share-demo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+      padding: 9px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(201, 165, 107, 0.5);
+      color: #0b3c49;
+      width: fit-content;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+    .maps-share-icon-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+    .maps-share-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #dff4fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #005b6f;
+    }
+    .maps-share-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #004e61;
+      line-height: 1;
+    }
+    .maps-share-caption {
+      font-size: 0.75rem;
+      line-height: 1.4;
+      color: #1e293b;
+    }
+    .maps-guide-tips {
+      margin-top: 12px;
+      padding: 10px 13px;
+      border-radius: 12px;
+      background: rgba(15, 2, 7, 0.6);
+      border: 1px solid rgba(201, 165, 107, 0.2);
+      font-size: 0.78rem;
+      color: rgba(242, 224, 190, 0.88);
+      line-height: 1.5;
+    }
+    .maps-guide-tips code {
+      background: rgba(201, 165, 107, 0.16);
+      color: #ffd98a;
+      padding: 1px 6px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      word-break: break-all;
+    }
+    .maps-editor-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    @media (min-width: 900px) {
+      .maps-editor-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .maps-loc-card {
+      background: rgba(24, 4, 11, 0.75);
+      border: 1.5px solid rgba(201, 165, 107, 0.32);
+      border-radius: 18px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .maps-loc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(201, 165, 107, 0.25);
+    }
+    .maps-loc-header h3 {
+      font-size: 1rem;
+      color: var(--gold-soft);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .maps-loc-tag {
+      font-size: 0.7rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(201, 165, 107, 0.16);
+      border: 1px solid rgba(201, 165, 107, 0.35);
+      color: var(--gold-soft);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .maps-input-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .maps-mode-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .maps-mode-pills {
+      display: inline-flex;
+      gap: 6px;
+      background: rgba(12, 2, 6, 0.7);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid rgba(201, 165, 107, 0.25);
+    }
+    .maps-mode-btn {
+      background: transparent;
+      border: none;
+      color: rgba(242, 224, 190, 0.75);
+      padding: 6px 11px;
+      border-radius: 7px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .maps-mode-btn.active {
+      background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color: var(--wine-950);
+      font-weight: 700;
+    }
+    .maps-status-pill {
+      font-size: 0.78rem;
+      padding: 8px 11px;
+      border-radius: 10px;
+      line-height: 1.4;
+      background: rgba(201, 165, 107, 0.1);
+      border: 1px solid rgba(201, 165, 107, 0.28);
+      color: var(--gold-soft);
+      word-break: break-word;
+    }
+    .maps-status-pill.is-ok {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.45);
+      color: #a7f3d0;
+    }
+    .maps-status-pill.is-err {
+      background: rgba(225, 29, 72, 0.14);
+      border-color: rgba(225, 29, 72, 0.45);
+      color: #fecdd3;
+    }
+    .maps-preview-box {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border: 1.5px solid rgba(201, 165, 107, 0.55);
+      border-radius: 14px;
+      padding: 4px;
+      background: rgba(14, 2, 6, 0.9);
+      overflow: hidden;
+    }
+    .maps-preview-box iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 10px;
+      background: #1b030b;
+    }
+    .maps-footer-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(201, 165, 107, 0.3);
+    }
+    .maps-footer-left {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    @media (max-width: 600px) {
+      .maps-guide-card, .maps-loc-card {
+        padding: 14px 12px;
+      }
+      .maps-footer-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .maps-footer-left {
+        flex-direction: column;
+      }
+      .maps-footer-actions .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2136,6 +2431,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         <span>4. RSVP &amp; Doa</span>
         <span class="nav-tab-badge" id="navBadgeRsvps">0</span>
+      </button>
+      <button type="button" class="portal-nav-tab" id="btnTabMaps" data-tab="paneEditMaps" onclick="switchPortalTab('paneEditMaps')" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>5. Edit Maps</span>
       </button>
     </nav>
 
@@ -2337,6 +2636,219 @@
         <!-- Card Grid Container (Model Baru) -->
         <div class="rsvp-cards-grid" id="rsvpCardsGrid">
           <!-- Wish cards rendered dynamically by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- PANE 5: Edit Lokasi & Google Maps -->
+    <div class="portal-tab-pane" id="paneEditMaps" role="tabpanel">
+      <div class="card">
+        <div class="guest-list-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:18px">
+          <div>
+            <h2 style="font-size:1.15rem;display:flex;align-items:center;gap:8px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              5. Pengaturan Lokasi &amp; Google Maps
+            </h2>
+            <p style="font-size:0.8rem;color:var(--gold-soft);margin-top:2px">Ubah titik peta Akad Nikah &amp; Resepsi langsung dari link Google Maps HP Anda</p>
+          </div>
+          <a href="/#lokasi" target="_blank" class="btn btn-outline btn-sm">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Lihat Seksi Lokasi
+          </a>
+        </div>
+
+        <!-- Panduan Pengambilan Link Google Maps dari Perangkat Mobile -->
+        <div class="maps-guide-card">
+          <div class="maps-guide-head">
+            <div class="maps-guide-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <span>Panduan Ambil Link Google Maps dari HP (Android / iPhone)</span>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" id="btnToggleMapsGuide" onclick="toggleMapsGuide()">
+              Sembunyikan Panduan
+            </button>
+          </div>
+
+          <div class="maps-guide-body" id="mapsGuideBody">
+            <div class="maps-guide-steps">
+              <div class="maps-step-item">
+                <div class="maps-step-num"><span>1</span> Buka Google Maps &amp; Tentukan Titik</div>
+                <div class="maps-step-desc">
+                  Buka aplikasi <strong>Google Maps</strong> di HP Anda. Cari nama tempat, atau <strong>tekan &amp; tahan</strong> tepat di atas bangunan/lokasi tujuan (misal Masjid atau Rumah) hingga muncul <strong>pin merah</strong>.
+                </div>
+              </div>
+
+              <div class="maps-step-item">
+                <div class="maps-step-num"><span>2</span> Geser Panel Lokasi ke Atas</div>
+                <div class="maps-step-desc">
+                  Ketuk atau geser ke atas panel detail lokasi di bagian bawah layar HP sampai deretan tombol aksi muncul (Rute, Mulai, Simpan, <strong>Bagikan</strong>).
+                </div>
+              </div>
+
+              <div class="maps-step-item">
+                <div class="maps-step-num"><span>3</span> Ketuk Tombol &ldquo;Bagikan&rdquo;</div>
+                <div class="maps-step-desc">
+                  Ketuk ikon <strong>Bagikan</strong> berwarna biru muda seperti di bawah ini, lalu pilih <strong>Salin link</strong> (<em>Copy link</em>):
+                  <div class="maps-share-demo" aria-hidden="true">
+                    <div class="maps-share-icon-badge">
+                      <div class="maps-share-circle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                      </div>
+                      <span class="maps-share-label">Bagikan</span>
+                    </div>
+                    <div class="maps-share-caption">
+                      Ketuk ikon <strong>Bagikan</strong> lalu pilih <strong>Salin link</strong>. Link tersalin otomatis (contoh: <em>maps.app.goo.gl/...</em>).
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="maps-step-item">
+                <div class="maps-step-num"><span>4</span> Tempel &amp; Proses Peta</div>
+                <div class="maps-step-desc">
+                  Tempel (<em>Paste</em>) link tersebut ke kolom <strong>Link / Koordinat Google Maps</strong> di bawah, tekan <strong>Proses &amp; Preview</strong>, cek posisi pin di peta, lalu klik <strong>Simpan Perubahan Maps</strong>.
+                </div>
+              </div>
+            </div>
+
+            <div class="maps-guide-tips">
+              <strong>Format lain yang juga didukung otomatis:</strong><br />
+              &bull; Link pendek dari HP: <code>https://maps.app.goo.gl/...</code> (atau teks share langsung dari WA/Maps)<br />
+              &bull; Koordinat langsung dari Google Maps HP (muncul di kolom pencarian saat pin ditaruh): <code>-6.960222, 108.890500</code> atau <code>6°57'36.8"S 108°53'25.8"E</code><br />
+              &bull; Kode sematan HTML dari komputer/laptop: <code>&lt;iframe src="https://www.google.com/maps/embed?pb=..."&gt;&lt;/iframe&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editor 2 Lokasi: Akad & Resepsi -->
+        <div class="maps-editor-grid">
+          <!-- Lokasi 1: Akad Nikah -->
+          <div class="maps-loc-card">
+            <div class="maps-loc-header">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                Lokasi 1: Akad Nikah
+              </h3>
+              <span class="maps-loc-tag">AKAD</span>
+            </div>
+
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="mapsAkadPlace">Nama Tempat</label>
+              <input type="text" id="mapsAkadPlace" class="form-input" placeholder="Contoh: Masjid Miftahul Jannah 02" />
+            </div>
+
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="mapsAkadNote">Catatan Kecil (Opsional)</label>
+              <input type="text" id="mapsAkadNote" class="form-input" placeholder="Contoh: (Mempelai Wanita)" />
+            </div>
+
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="mapsAkadAddress">Alamat Lengkap</label>
+              <input type="text" id="mapsAkadAddress" class="form-input" placeholder="Desa Kubangwungu RT 08 RW 01, Kec. Ketanggungan, Kab. Brebes" />
+            </div>
+
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="mapsAkadInput">Link Google Maps (dari HP) / Koordinat / Iframe</label>
+              <textarea id="mapsAkadInput" class="form-textarea" style="min-height:82px;font-size:0.84rem" placeholder="Tempel link dari tombol Bagikan di Google Maps HP, koordinat (-6.96..., 108.89...), atau <iframe ...>"></textarea>
+              <div class="maps-input-actions">
+                <button type="button" class="btn btn-sm" onclick="resolveMapField('akad')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  Proses &amp; Preview
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="pasteMapField('akad')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  Tempel
+                </button>
+              </div>
+            </div>
+
+            <div class="maps-mode-row">
+              <span style="font-size:0.78rem;color:var(--gold-soft)">Mode Tampilan Peta:</span>
+              <div class="maps-mode-pills">
+                <button type="button" class="maps-mode-btn active" id="btnAkadModeK" onclick="setMapViewMode('akad', 'k')">Satelit</button>
+                <button type="button" class="maps-mode-btn" id="btnAkadModeM" onclick="setMapViewMode('akad', 'm')">Peta Standar</button>
+              </div>
+            </div>
+
+            <div class="maps-status-pill" id="mapsAkadStatus">Memuat konfigurasi peta Akad Nikah...</div>
+
+            <div class="maps-preview-box">
+              <iframe id="mapsAkadPreview" title="Preview Peta Akad Nikah" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <a id="mapsAkadTestLink" href="#" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="align-self:flex-start">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Cek Buka di Google Maps
+            </a>
+          </div>
+
+          <!-- Lokasi 2: Resepsi -->
+          <div class="maps-loc-card">
+            <div class="maps-loc-header">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                Lokasi 2: Resepsi
+              </h3>
+              <span class="maps-loc-tag">RESEPSI</span>
+            </div>
+
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="mapsResepsiPlace">Nama Tempat</label>
+              <input type="text" id="mapsResepsiPlace" class="form-input" placeholder="Contoh: Kediaman Mempelai Wanita" />
+            </div>
+
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="mapsResepsiAddress">Alamat Lengkap</label>
+              <input type="text" id="mapsResepsiAddress" class="form-input" placeholder="Desa Kubangwungu RT 08 RW 01, Kec. Ketanggungan, Kab. Brebes" />
+            </div>
+
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="mapsResepsiInput">Link Google Maps (dari HP) / Koordinat / Iframe</label>
+              <textarea id="mapsResepsiInput" class="form-textarea" style="min-height:82px;font-size:0.84rem" placeholder="Tempel link dari tombol Bagikan di Google Maps HP, koordinat (-6.96..., 108.88...), atau <iframe ...>"></textarea>
+              <div class="maps-input-actions">
+                <button type="button" class="btn btn-sm" onclick="resolveMapField('resepsi')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  Proses &amp; Preview
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="pasteMapField('resepsi')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  Tempel
+                </button>
+              </div>
+            </div>
+
+            <div class="maps-mode-row">
+              <span style="font-size:0.78rem;color:var(--gold-soft)">Mode Tampilan Peta:</span>
+              <div class="maps-mode-pills">
+                <button type="button" class="maps-mode-btn active" id="btnResepsiModeK" onclick="setMapViewMode('resepsi', 'k')">Satelit</button>
+                <button type="button" class="maps-mode-btn" id="btnResepsiModeM" onclick="setMapViewMode('resepsi', 'm')">Peta Standar</button>
+              </div>
+            </div>
+
+            <div class="maps-status-pill" id="mapsResepsiStatus">Memuat konfigurasi peta Resepsi...</div>
+
+            <div class="maps-preview-box">
+              <iframe id="mapsResepsiPreview" title="Preview Peta Resepsi" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <a id="mapsResepsiTestLink" href="#" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="align-self:flex-start">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Cek Buka di Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="maps-footer-actions">
+          <div class="maps-footer-left">
+            <button type="button" class="btn" id="btnSaveMaps" onclick="saveMapsConfig()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Simpan Perubahan Maps
+            </button>
+            <button type="button" class="btn btn-outline" onclick="resetMapsConfig()">
+              Reset ke Default
+            </button>
+          </div>
+          <span id="mapsLastSaved" style="font-size:0.76rem;color:rgba(242,224,190,0.7)"></span>
         </div>
       </div>
     </div>
@@ -2592,6 +3104,7 @@
         updateMessagePreview();
         fetchGuestsFromD1();
         fetchRsvpsFromD1();
+        loadMapsConfigFromD1();
       } else {
         document.getElementById('loginModal').classList.remove('hidden');
         document.getElementById('portalContent').classList.add('hidden');
@@ -3708,6 +4221,337 @@
         t.classList.remove('show');
       }, 3200);
     }
+
+    // =========================================================================
+    // 7. PENGATURAN LOKASI & GOOGLE MAPS EDITOR (TAB 5)
+    // =========================================================================
+    var DEFAULT_MAPS_CONFIG = {
+      akad: {
+        place: 'Masjid Miftahul Jannah 02',
+        note: '(Mempelai Wanita)',
+        address: 'Desa Kubangwungu RT 08 RW 01, Kec. Ketanggungan, Kab. Brebes',
+        mapQuery: '-6.960222,108.890500',
+        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d633.5620207638018!2d108.8899949581867!3d-6.960443386344683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwNTcnMzYuOCJTIDEwOMKwNTMnMjUuOCJF!5e1!3m2!1sid!2sid!4v1794564839217!5m2!1sid!2sid',
+        mapType: 'k',
+        rawInput: ''
+      },
+      resepsi: {
+        place: 'Kediaman Mempelai Wanita',
+        address: 'Desa Kubangwungu RT 08 RW 01, Kec. Ketanggungan, Kab. Brebes',
+        mapQuery: '-6.961306,108.889861',
+        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d633.5606997965062!2d108.88941528380509!3d-6.961421832844573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwNTcnNDAuNyJTIDEwOMKwNTMnMjMuNSJF!5e1!3m2!1sid!2sid!4v1794564752162!5m2!1sid!2sid',
+        mapType: 'k',
+        rawInput: ''
+      }
+    };
+
+    var MAPS_STATE = {
+      akad: Object.assign({ lastResolvedRaw: '' }, DEFAULT_MAPS_CONFIG.akad),
+      resepsi: Object.assign({ lastResolvedRaw: '' }, DEFAULT_MAPS_CONFIG.resepsi)
+    };
+
+    function mapFieldPrefix(which) {
+      return which === 'akad' ? 'mapsAkad' : 'mapsResepsi';
+    }
+
+    function setMapStatus(which, message, stateType) {
+      var el = document.getElementById(mapFieldPrefix(which) + 'Status');
+      if (!el) return;
+      el.textContent = message;
+      el.className = 'maps-status-pill' + (stateType === 'ok' ? ' is-ok' : (stateType === 'err' ? ' is-err' : ''));
+    }
+
+    function updateMapModeButtons(which, mode) {
+      var kBtn = document.getElementById(which === 'akad' ? 'btnAkadModeK' : 'btnResepsiModeK');
+      var mBtn = document.getElementById(which === 'akad' ? 'btnAkadModeM' : 'btnResepsiModeM');
+      if (kBtn) kBtn.classList.toggle('active', mode !== 'm');
+      if (mBtn) mBtn.classList.toggle('active', mode === 'm');
+    }
+
+    function applyMapStateToEditor(which, locData, statusText) {
+      var prefix = mapFieldPrefix(which);
+      var state = MAPS_STATE[which];
+      Object.assign(state, locData || {});
+      state.lastResolvedRaw = (state.rawInput || '').trim();
+
+      var placeEl = document.getElementById(prefix + 'Place');
+      var addrEl = document.getElementById(prefix + 'Address');
+      var inputEl = document.getElementById(prefix + 'Input');
+      var previewEl = document.getElementById(prefix + 'Preview');
+      var testLinkEl = document.getElementById(prefix + 'TestLink');
+
+      if (placeEl) placeEl.value = state.place || '';
+      if (which === 'akad') {
+        var noteEl = document.getElementById('mapsAkadNote');
+        if (noteEl) noteEl.value = state.note || '';
+      }
+      if (addrEl) addrEl.value = state.address || '';
+      if (inputEl) inputEl.value = state.rawInput || state.mapQuery || '';
+      state.lastResolvedRaw = (inputEl ? inputEl.value : '').trim();
+
+      if (previewEl && state.mapEmbed && previewEl.src !== state.mapEmbed) {
+        previewEl.src = state.mapEmbed;
+      }
+      if (testLinkEl) {
+        testLinkEl.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(state.mapQuery || '');
+      }
+      updateMapModeButtons(which, state.mapType || 'k');
+      if (statusText) setMapStatus(which, statusText, 'ok');
+    }
+
+    function toggleMapsGuide() {
+      var body = document.getElementById('mapsGuideBody');
+      var btn = document.getElementById('btnToggleMapsGuide');
+      if (!body || !btn) return;
+      var collapsed = body.classList.toggle('collapsed');
+      btn.textContent = collapsed ? 'Tampilkan Panduan HP' : 'Sembunyikan Panduan';
+    }
+    window.toggleMapsGuide = toggleMapsGuide;
+
+    function loadMapsConfigFromD1() {
+      // Isi nilai default terlebih dahulu agar preview langsung tampil
+      applyMapStateToEditor('akad', DEFAULT_MAPS_CONFIG.akad, 'Menggunakan peta bawaan (Default): ' + DEFAULT_MAPS_CONFIG.akad.mapQuery);
+      applyMapStateToEditor('resepsi', DEFAULT_MAPS_CONFIG.resepsi, 'Menggunakan peta bawaan (Default): ' + DEFAULT_MAPS_CONFIG.resepsi.mapQuery);
+
+      fetch('/api/maps', { cache: 'no-store' })
+        .then(function(res){ return res.ok ? res.json() : null; })
+        .then(function(json){
+          if (!json || !json.success) return;
+          if (json.data) {
+            if (json.data.akad) {
+              applyMapStateToEditor('akad', json.data.akad, 'Aktif dari database · Titik: ' + (json.data.akad.mapQuery || '-'));
+            }
+            if (json.data.resepsi) {
+              applyMapStateToEditor('resepsi', json.data.resepsi, 'Aktif dari database · Titik: ' + (json.data.resepsi.mapQuery || '-'));
+            }
+            var savedEl = document.getElementById('mapsLastSaved');
+            if (savedEl && json.updatedAt) {
+              savedEl.textContent = 'Terakhir disimpan: ' + formatRsvpDate(json.updatedAt);
+            }
+          }
+        })
+        .catch(function(err){
+          console.warn('Gagal memuat konfigurasi maps dari D1:', err);
+        });
+    }
+
+    function setMapViewMode(which, mode) {
+      var state = MAPS_STATE[which];
+      state.mapType = mode === 'm' ? 'm' : 'k';
+      updateMapModeButtons(which, state.mapType);
+
+      // Jika URL embed menggunakan format output=embed, perbarui parameter &t= langsung
+      if (state.mapEmbed && state.mapEmbed.indexOf('output=embed') !== -1) {
+        try {
+          var u = new URL(state.mapEmbed);
+          u.searchParams.set('t', state.mapType);
+          state.mapEmbed = u.toString();
+          var previewEl = document.getElementById(mapFieldPrefix(which) + 'Preview');
+          if (previewEl) previewEl.src = state.mapEmbed;
+          setMapStatus(which, 'Mode peta diubah ke ' + (state.mapType === 'm' ? 'Peta Standar' : 'Satelit') + '.', 'ok');
+          return;
+        } catch(e){}
+      }
+
+      // Jika input aktif berbeda dari bawaan iframe pb, resolve ulang agar memakai mode baru
+      var inputEl = document.getElementById(mapFieldPrefix(which) + 'Input');
+      var raw = inputEl ? inputEl.value.trim() : '';
+      if (raw && raw.indexOf('/maps/embed?pb=') === -1) {
+        resolveMapField(which, true);
+      } else {
+        setMapStatus(which, 'Catatan: Kode embed iframe pb bawaan mengikuti tampilan aslinya. Tempel link HP atau koordinat untuk ganti mode Satelit/Standar.', '');
+      }
+    }
+    window.setMapViewMode = setMapViewMode;
+
+    function pasteMapField(which) {
+      var inputEl = document.getElementById(mapFieldPrefix(which) + 'Input');
+      if (!inputEl) return;
+      if (navigator.clipboard && navigator.clipboard.readText) {
+        navigator.clipboard.readText().then(function(text){
+          if (text && text.trim()) {
+            inputEl.value = text.trim();
+            resolveMapField(which);
+          } else {
+            inputEl.focus();
+            showToast('Clipboard kosong. Silakan salin link dari Google Maps HP lalu tempel di kolom.', 'warning', 'CLIPBOARD KOSONG');
+          }
+        }).catch(function(){
+          inputEl.focus();
+          showToast('Tekan & tahan di dalam kolom lalu pilih Tempel (Paste).', 'info', 'TEMPEL MANUAL');
+        });
+      } else {
+        inputEl.focus();
+        showToast('Tekan & tahan di dalam kolom lalu pilih Tempel (Paste).', 'info', 'TEMPEL MANUAL');
+      }
+    }
+    window.pasteMapField = pasteMapField;
+
+    function resolveMapField(which, silent) {
+      var prefix = mapFieldPrefix(which);
+      var inputEl = document.getElementById(prefix + 'Input');
+      var raw = inputEl ? inputEl.value.trim() : '';
+      if (!raw) {
+        setMapStatus(which, 'Tempel link Google Maps, koordinat, atau kode iframe terlebih dahulu.', 'err');
+        return Promise.resolve(false);
+      }
+
+      setMapStatus(which, 'Memproses link Google Maps...', '');
+
+      return fetch('/api/maps', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'resolve',
+          input: raw,
+          mapType: MAPS_STATE[which].mapType || 'k'
+        })
+      })
+      .then(function(res){
+        return res.json().then(function(data){ return { ok: res.ok, data: data }; });
+      })
+      .then(function(result){
+        if (!result.ok || !result.data || !result.data.success) {
+          var errMsg = (result.data && result.data.error) || 'Gagal membaca lokasi dari link tersebut.';
+          setMapStatus(which, errMsg, 'err');
+          if (!silent) showToast(errMsg, 'warning', 'PERIKSA LINK');
+          return false;
+        }
+
+        var resolved = result.data.resolved || {};
+        var state = MAPS_STATE[which];
+        state.mapEmbed = resolved.mapEmbed;
+        state.mapQuery = resolved.mapQuery;
+        state.rawInput = raw;
+        state.lastResolvedRaw = raw;
+
+        var previewEl = document.getElementById(prefix + 'Preview');
+        if (previewEl && resolved.mapEmbed) {
+          previewEl.src = resolved.mapEmbed;
+        }
+        var testLinkEl = document.getElementById(prefix + 'TestLink');
+        if (testLinkEl) {
+          testLinkEl.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(resolved.mapQuery || '');
+        }
+
+        var label = resolved.coords
+          ? ('✓ Titik pin berhasil dibaca: ' + resolved.coords)
+          : ('✓ Lokasi siap dipreview: ' + (resolved.mapQuery || 'Embed Google Maps'));
+        setMapStatus(which, label, 'ok');
+        if (!silent) showToast('Preview peta ' + (which === 'akad' ? 'Akad Nikah' : 'Resepsi') + ' diperbarui!', 'success', 'PETA SIAP');
+        return true;
+      })
+      .catch(function(err){
+        setMapStatus(which, 'Gagal memproses link: ' + err.message, 'err');
+        return false;
+      });
+    }
+    window.resolveMapField = resolveMapField;
+
+    function collectMapPayload(which) {
+      var prefix = mapFieldPrefix(which);
+      var state = MAPS_STATE[which];
+      var place = (document.getElementById(prefix + 'Place').value || '').trim();
+      var address = (document.getElementById(prefix + 'Address').value || '').trim();
+      var rawInput = (document.getElementById(prefix + 'Input').value || '').trim();
+      var obj = {
+        place: place,
+        address: address,
+        mapQuery: state.mapQuery,
+        mapEmbed: state.mapEmbed,
+        mapType: state.mapType || 'k',
+        rawInput: rawInput
+      };
+      if (which === 'akad') {
+        obj.note = (document.getElementById('mapsAkadNote').value || '').trim();
+      }
+      return obj;
+    }
+
+    function saveMapsConfig() {
+      var btn = document.getElementById('btnSaveMaps');
+      var akadInput = (document.getElementById('mapsAkadInput').value || '').trim();
+      var resepsiInput = (document.getElementById('mapsResepsiInput').value || '').trim();
+
+      var akadPlace = (document.getElementById('mapsAkadPlace').value || '').trim();
+      var resepsiPlace = (document.getElementById('mapsResepsiPlace').value || '').trim();
+      if (!akadPlace || !resepsiPlace) {
+        appAlert('Nama tempat untuk Akad Nikah dan Resepsi wajib diisi.', 'Data Belum Lengkap', 'warning');
+        return;
+      }
+
+      if (btn) btn.disabled = true;
+
+      var tasks = [];
+      if (akadInput && akadInput !== MAPS_STATE.akad.lastResolvedRaw) {
+        tasks.push(resolveMapField('akad', true));
+      }
+      if (resepsiInput && resepsiInput !== MAPS_STATE.resepsi.lastResolvedRaw) {
+        tasks.push(resolveMapField('resepsi', true));
+      }
+
+      Promise.all(tasks)
+        .then(function(results){
+          if (results.indexOf(false) !== -1) {
+            throw new Error('Salah satu link Google Maps belum valid. Periksa pesan status di kartu lokasi.');
+          }
+          var payload = {
+            action: 'save',
+            akad: collectMapPayload('akad'),
+            resepsi: collectMapPayload('resepsi')
+          };
+          return fetch('/api/maps', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        })
+        .then(function(res){
+          return res.json().then(function(data){ return { ok: res.ok, data: data }; });
+        })
+        .then(function(result){
+          if (!result.ok || !result.data || !result.data.success) {
+            throw new Error((result.data && result.data.error) || 'Gagal menyimpan pengaturan maps.');
+          }
+          try {
+            localStorage.setItem('wedding_config_nabil-izza', JSON.stringify(result.data.data));
+          } catch(e){}
+          var savedEl = document.getElementById('mapsLastSaved');
+          if (savedEl) savedEl.textContent = 'Tersimpan barusan';
+          showToast('Pengaturan Maps berhasil disimpan & aktif di undangan!', 'success', 'MAPS TERSIMPAN');
+        })
+        .catch(function(err){
+          appAlert(err.message || 'Gagal menyimpan pengaturan maps.', 'Gagal Menyimpan', 'warning');
+        })
+        .finally(function(){
+          if (btn) btn.disabled = false;
+        });
+    }
+    window.saveMapsConfig = saveMapsConfig;
+
+    function resetMapsConfig() {
+      appConfirm('Kembalikan kedua peta lokasi (Akad & Resepsi) ke pengaturan bawaan semula?', 'Reset Peta Lokasi', 'warning', 'Ya, Reset Default', 'Batal')
+        .then(function(confirmed){
+          if (!confirmed) return;
+          fetch('/api/maps', { method: 'DELETE' })
+            .then(function(res){ return res.json(); })
+            .then(function(json){
+              if (!json || !json.success) {
+                throw new Error((json && json.error) || 'Gagal mereset pengaturan maps.');
+              }
+              try { localStorage.removeItem('wedding_config_nabil-izza'); } catch(e){}
+              applyMapStateToEditor('akad', DEFAULT_MAPS_CONFIG.akad, 'Dikembalikan ke peta bawaan (Default): ' + DEFAULT_MAPS_CONFIG.akad.mapQuery);
+              applyMapStateToEditor('resepsi', DEFAULT_MAPS_CONFIG.resepsi, 'Dikembalikan ke peta bawaan (Default): ' + DEFAULT_MAPS_CONFIG.resepsi.mapQuery);
+              var savedEl = document.getElementById('mapsLastSaved');
+              if (savedEl) savedEl.textContent = 'Menggunakan pengaturan default';
+              showToast('Maps berhasil dikembalikan ke pengaturan default.', 'success', 'RESET BERHASIL');
+            })
+            .catch(function(err){
+              appAlert(err.message, 'Gagal Reset', 'warning');
+            });
+        });
+    }
+    window.resetMapsConfig = resetMapsConfig;
 
     // Inisialisasi saat halaman dimuat
     document.addEventListener('DOMContentLoaded', checkAuth);

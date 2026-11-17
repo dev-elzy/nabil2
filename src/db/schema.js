@@ -28,3 +28,9 @@ export const rsvps = sqliteTable('rsvps', {
   index('idx_rsvps_visible_created').on(table.isVisible, table.createdAt)
 ]);
 
+export const siteConfig = sqliteTable('site_config', {
+  key: text('key').primaryKey(),
+  value: text('value').notNull(),
+  updatedAt: text('updated_at').default(sql`CURRENT_TIMESTAMP`)
+});
+
