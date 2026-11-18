@@ -240,6 +240,12 @@ const SITE_KEY = "0x4AAAAAAFspfVyDnt3bG0U0";
     }, 720);
   }
 
+  // Lewati gerbang Turnstile pada lingkungan lokal (localhost / 127.0.0.1)
+  if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+    unlockGate();
+    return;
+  }
+
   // Jika pengunjung sudah terverifikasi dalam sesi ini, langsung buka tanpa jeda
   try {
     if (sessionStorage.getItem('azluna_turnstile_verified') === '1') {
